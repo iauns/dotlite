@@ -1,0 +1,4 @@
+dotlite
+=======
+
+Lightweight dotfiles
