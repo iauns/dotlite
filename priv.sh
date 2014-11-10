@@ -52,7 +52,6 @@ else
   use_private_repo=true
 fi
 
-
 if [ "$use_private_repo" == "true" ]; then
   # Clone small private dotfiles repo (mostly for mutt and ssh config).
   info "Updating private repo."
@@ -66,10 +65,10 @@ if [ "$use_private_repo" == "true" ]; then
       popd > /dev/null
     fi
 
-    #info "Running private bootstrap"
-    #pushd $DOTFILES_ROOT/private > /dev/null
-    #  $DOTFILES_ROOT/private/bootstrap
-    #popd > /dev/null
+    info "Updating private"
+    pushd $privateRepoLoc > /dev/null
+      ./priv.sh
+    popd > /dev/null
   else
     echo "Unable to find git, please install it before attempting to pull private repos."
   fi
