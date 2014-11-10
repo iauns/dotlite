@@ -1,0 +1,196 @@
+#!/usr/bin/env bash
+set -e
+
+fail () {
+  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+  exit
+}
+
+dotfiles_root_rel=${1%/}
+if [ -z $dotfiles_root_rel ] || ! [ -d "./$dotfiles_root_rel" ]; then
+  fail "Subdirectory given is not valid."
+fi
+
+info () {
+  printf "  [ \033[00;34m..\033[0m ] $1\n"
+}
+
+user () {
+  printf "\r  [ \033[0;33m?\033[0m ] $1 "
+}
+
+success () {
+  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+}
+
+error () {
+  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+}
+
+link_files () {
+  $3 ln -s "$1" "$2"
+  success "linked $1 to $2"
+}
+
+copy_files () {
+  $3 cp $1 $2
+  success "copied $1 to $2"
+}
+
+install_dotfiles () {
+  if [ "$1" == "copy" ]
+  then
+    copy_dot_files=true
+  else
+    copy_dot_files=false
+  fi
+  
+  target_dir=$2
+  command_prefix=$3
+
+  info "${1}ing dotfiles to $target_dir"
+
+  overwrite_all=false
+  backup_all=false
+  skip_all=false
+
+  current_dir=$(pwd)
+  #for source in `find $dotfiles_root_rel -type f`
+  #for source in `find . -type f -print0 | xargs -0 echo`
+  # The complication below exists so that we can handle spaces in the output of
+  # find...
+
+  # Save and change IFS (we have spaces in the directory names)
+  OLDIFS=$IFS
+  IFS=$'\n'
+
+  # Read all directories into an array.
+  #fileArray=($(find ./$dotfiles_root_rel -type f -or -type l))
+  # We do not want symbolic links.
+  fileArray=($(find . -type f))
+
+  # Restore IFS
+  IFS=$OLDIFS
+
+  # get length of array
+  tLen=${#fileArray[@]}
+
+  for source in "${fileArray[@]}"
+  do
+    # Check to see if we should ignore the directory.
+    array_skip=false
+    base_dir=$(dirname "$source")
+    for i in "${ignore[@]}"
+    do
+      # Check exact filename match.
+      if [[ "$i" == "$source" ]]
+      then
+        array_skip=true
+      fi
+
+      # Check every possible sub directory
+      base_dir_rec=$base_dir
+      while [[ "$base_dir_rec" != "." ]]
+      do
+        if [[ "$i" ==  "$base_dir_rec" ]]
+        then
+          array_skip=true
+          break
+        fi
+        base_dir_rec=$(dirname "$base_dir_rec")
+      done
+
+      # Break out if we have already determined that we are skipping this 
+      # element.
+      if [ "$array_skip" == "true" ]
+      then
+        break
+      fi
+    done
+
+    if [ "$array_skip" == "true" ]
+    then
+      continue
+    fi
+
+    $command_prefix mkdir -p "$target_dir/$base_dir"
+
+    # Strip off the './'
+    sourceMinusDot="${source:2}"
+    if [ "$target_dir" == "/" ]; then
+      dest="/$sourceMinusDot"
+    else
+      dest="$target_dir/$sourceMinusDot"
+    fi
+    source="$current_dir/$sourceMinusDot"
+
+    # We also check -L in case we have bad symbolic links.
+    if [ -f "$dest" ] || [ -d "$dest" ] || [ -e "$dest" ] || [ -L "$dest" ]
+    then
+
+      overwrite=false
+      backup=false
+      skip=false
+
+      if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]
+      then
+        user "File already exists: `basename $source`, what do you want to do?\n        [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
+        read -n 1 action
+
+        case "$action" in
+          o )
+            overwrite=true;;
+          O )
+            overwrite_all=true;;
+          b )
+            backup=true;;
+          B )
+            backup_all=true;;
+          s )
+            skip=true;;
+          S )
+            skip_all=true;;
+          * )
+            ;;
+        esac
+      fi
+
+      if [ "$overwrite" == "true" ] || [ "$overwrite_all" == "true" ]
+      then
+        $command_prefix rm "$dest"
+        success "removed $dest"
+      fi
+
+      if [ "$backup" == "true" ] || [ "$backup_all" == "true" ]
+      then
+        $command_prefix mv "$dest" "$dest\.backup"
+        success "moved $dest to $dest.backup"
+      fi
+
+      if [ "$skip" == "false" ] && [ "$skip_all" == "false" ]
+      then
+        if [ "$copy_dot_files" == "true" ]; then
+          copy_files "$source" "$dest" "$command_prefix"
+        else
+          link_files "$source" "$dest" "$command_prefix"
+        fi
+      else
+        success "skipped $source"
+      fi
+
+    else
+      if [ "$copy_dot_files" == "true" ]; then
+        copy_files "$source" "$dest" "$command_prefix"
+      else
+        link_files "$source" "$dest" "$command_prefix"
+      fi
+    fi
+
+  done
+}
+
+# Install dotfiles to root. We do not symlink, we copy.
+pushd $dotfiles_root_rel > /dev/null
+  install_dotfiles "copy" "/" "sudo"
+popd > /dev/null
+
