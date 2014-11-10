@@ -1,0 +1,6 @@
+
+# Local zshrc -- using system as per grml's advice.
+alias nv='nvim'
+alias n='nvim'
+alias g='git'
+alias gs='git status'
