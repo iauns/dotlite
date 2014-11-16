@@ -4,3 +4,4 @@ alias nv='nvim'
 alias n='nvim'
 alias g='git'
 alias gs='git status'
+setopt IGNORE_EOF
