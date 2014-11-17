@@ -21,7 +21,11 @@ fi
 # Note: Information regarding available options can be found
 #       in a file named base.lst (/usr/share/X11/xkb/rules)
 # See: https://wiki.archlinux.org/index.php/X_KeyBoard_extension
-setxkbmap dvorak -option 'caps:swapescape,ctrl:swap_lalt_lctl_lwin,ctrl:swap_rwin_rctl'
+setxkbmap dvorak -option 'caps:swapescape,ctrl:swap_rwin_rctl'
+
+if [ -s ~/.Xmodmap ]; then
+  xmodmap ~/.Xmodmap
+fi
 
 # Ctrl-t and up / down / right / left equivalents are set up in
 # the window manager.

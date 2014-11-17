@@ -10,13 +10,14 @@
 # controlled through the keyboard.
 focus_follows_mouse no
 
-set $mod Mod1
+#set $mod Mod1
+set $mod Mode_switch
 
-bindsym --release $mod+t exec --no-startup-id xdotool key --clearmodifiers Return
-bindsym --release $mod+period exec --no-startup-id xdotool key --clearmodifiers Right
-bindsym --release $mod+comma exec --no-startup-id xdotool key --clearmodifiers Left
-bindsym --release $mod+p exec --no-startup-id xdotool key --clearmodifiers Up
-bindsym --release $mod+u exec --no-startup-id xdotool key --clearmodifiers Down
+#bindsym --release $mod+t exec --no-startup-id xdotool key --clearmodifiers Return
+#bindsym --release $mod+period exec --no-startup-id xdotool key --clearmodifiers Right
+#bindsym --release $mod+comma exec --no-startup-id xdotool key --clearmodifiers Left
+#bindsym --release $mod+p exec --no-startup-id xdotool key --clearmodifiers Up
+#bindsym --release $mod+u exec --no-startup-id xdotool key --clearmodifiers Down
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -31,11 +32,12 @@ font pango:DejaVu Sans Mono 10
 # font, it doesn’t scale on retina/hidpi displays.
 
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+floating_modifier Mod1
 
 # start a terminal
   #i3-sensible-terminal
-bindsym $mod+Return exec termite
+#bindsym $mod+Return exec termite
+bindsym $mod+o exec termite
 # Kill focused window    
 bindsym $mod+Shift+q kill
 
@@ -46,11 +48,18 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+# Move the mouse along with the focus so we don't accidentally focus windows
+# that the mouse is currently on.
+set $movemouse "sh -c 'eval `xdotool getactivewindow getwindowgeometry --shell`; xdotool mousemove $((X+WIDTH-5)) $((Y+HEIGHT-5))'"
+bindsym $mod+h focus left; exec $movemouse
+bindsym $mod+j focus down; exec $movemouse
+bindsym $mod+k focus up; exec $movemouse
+bindsym $mod+l focus right; exec $movemouse
+## change focus
+#bindsym $mod+h focus left
+#bindsym $mod+j focus down
+#bindsym $mod+k focus up
+#bindsym $mod+l focus right
 #bindsym $mod+semicolon focus right
 
 # move focused window
