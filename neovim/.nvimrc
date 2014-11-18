@@ -50,3 +50,33 @@ if has ('unnamedplus')
 else
   set clipboard=unnamed
 endif
+
+" Hack for getting system clipboard to work.
+" Will only work on Linux. Not yet willing to install
+" python / pip and install neovim bundle and xerox
+" bundle to get this simple functionality to work.
+" See https://github.com/neovim/neovim/issues/583
+function! ClipboardYank()
+  call system('xclip -i -selection clipboard', @@)
+endfunction
+function! ClipboardPaste()
+  let @@ = system('xclip -o -selection clipboard')
+endfunction
+
+vnoremap <silent> y y:call ClipboardYank()<cr>
+vnoremap <silent> d d:call ClipboardYank()<cr>
+nnoremap <silent> p :call ClipboardPaste()<cr>p
+onoremap <silent> y y:call ClipboardYank()<cr>
+onoremap <silent> d d:call ClipboardYank()<cr>
+
+" Setup persistent undo/redo. Quite nice.
+silent !mkdir ~/.vim/backups > /dev/null 2>&1
+set undodir=~/.vim/backups
+set undofile
+set undolevels=1250
+
+" When opening files, return to the last edit position.
+autocmd BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif

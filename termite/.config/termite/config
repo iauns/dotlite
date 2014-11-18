@@ -1,6 +1,7 @@
 [options]
 font = DejaVu Sans Mono 16
 
+browser = firefox
 
 [colors]
 foreground = #839496
