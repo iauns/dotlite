@@ -3,3 +3,5 @@
 	name = James Hughes
 [alias]
 	s = status
+[push]
+	default = simple
