@@ -5,3 +5,4 @@ alias n='nvim'
 alias g='git'
 alias gs='git status'
 setopt IGNORE_EOF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

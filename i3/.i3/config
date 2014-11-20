@@ -51,10 +51,14 @@ bindsym $mod+d exec dmenu_run
 # Move the mouse along with the focus so we don't accidentally focus windows
 # that the mouse is currently on.
 set $movemouse "sh -c 'eval `xdotool getactivewindow getwindowgeometry --shell`; xdotool mousemove $((X+WIDTH-5)) $((Y+HEIGHT-5))'"
-bindsym $mod+h focus left; exec $movemouse
-bindsym $mod+j focus down; exec $movemouse
-bindsym $mod+k focus up; exec $movemouse
-bindsym $mod+l focus right; exec $movemouse
+bindsym $mod+h    focus left;  exec $movemouse
+bindsym Control+h focus left;  exec $movemouse
+bindsym $mod+j    focus down;  exec $movemouse
+bindsym Control+j focus down;  exec $movemouse
+bindsym $mod+k    focus up;    exec $movemouse
+bindsym Control+k focus up;    exec $movemouse
+bindsym $mod+l    focus right; exec $movemouse
+bindsym Control+l focus right; exec $movemouse
 ## change focus
 #bindsym $mod+h focus left
 #bindsym $mod+j focus down
