@@ -6,3 +6,4 @@ alias g='git'
 alias gs='git status'
 setopt IGNORE_EOF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH=~/.cabal/bin/:$PATH

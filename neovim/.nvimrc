@@ -56,18 +56,18 @@ endif
 " python / pip and install neovim bundle and xerox
 " bundle to get this simple functionality to work.
 " See https://github.com/neovim/neovim/issues/583
-function! ClipboardYank()
-  call system('xclip -i -selection clipboard', @@)
-endfunction
-function! ClipboardPaste()
-  let @@ = system('xclip -o -selection clipboard')
-endfunction
-
-vnoremap <silent> y y:call ClipboardYank()<cr>
-vnoremap <silent> d d:call ClipboardYank()<cr>
-nnoremap <silent> p :call ClipboardPaste()<cr>p
-onoremap <silent> y y:call ClipboardYank()<cr>
-onoremap <silent> d d:call ClipboardYank()<cr>
+" function! ClipboardYank()
+"   call system('xclip -i -selection clipboard', @@)
+" endfunction
+" function! ClipboardPaste()
+"   let @@ = system('xclip -o -selection clipboard')
+" endfunction
+"
+" vnoremap <silent> y y:call ClipboardYank()<cr>
+" vnoremap <silent> d d:call ClipboardYank()<cr>
+" nnoremap <silent> p :call ClipboardPaste()<cr>p
+" onoremap <silent> y y:call ClipboardYank()<cr>
+" onoremap <silent> d d:call ClipboardYank()<cr>
 
 " Setup persistent undo/redo. Quite nice.
 silent !mkdir ~/.vim/backups > /dev/null 2>&1
@@ -82,6 +82,7 @@ autocmd BufReadPost *
       \ endif
 
 call plug#begin('~/.nvim/plugged')
+Plug 'Shougo/vimproc.vim', { 'do' : './install.sh' }
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Lokaltog/vim-easymotion'
@@ -98,6 +99,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'junegunn/seoul256.vim'
 Plug 'derekwyatt/vim-fswitch'
 "Plug 'airblade/vim-gitgutter'
+Plug 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/neco-ghc'
 call plug#end()
 
 "--------------
@@ -166,6 +169,12 @@ nnoremap Y y$
 
 " Disable search highlighting
 noremap <silent> <leader>h :noh<CR>
+
+" Navigate between windows. See old vimrc for tmux integrated command.
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 " ---------------- Key remapping ------------------
 
