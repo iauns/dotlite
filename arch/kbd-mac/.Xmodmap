@@ -1,0 +1,8 @@
+remove Mod5 = Mode_switch
+remove Mod4 = Super_L
+keysym Super_L = Mode_switch
+keycode 45 = t T Return Return
+keycode 27 = p P Up Up
+keycode 41 = u U Down Down
+keycode 25 = comma less Left Left
+keycode 26 = period greater Right Right

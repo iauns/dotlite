@@ -30,3 +30,4 @@ fi
 # Ctrl-t and up / down / right / left equivalents are set up in
 # the window manager.
 exec i3
+#exec xterm
