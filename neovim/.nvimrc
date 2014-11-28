@@ -44,30 +44,16 @@ set confirm                     " Confirm dialog for save instead of fail
 set visualbell                  " Visual bell instead of beep
 set t_vb=                       " Disable visual bell (reset terminal code)
 
-" Write to unnamed register (and '*', '+' registers). Easy interaction with system clipboard.
-if has ('unnamedplus')
-  set clipboard=unnamedplus
-else
-  set clipboard=unnamed
+if has('nvim')
+  " See: https://github.com/neovim/neovim/issues/1179
+  " Try: pip instal git+https://github.com/neovim/python-client.git
+  runtime! python_setup.vim
 endif
 
-" Hack for getting system clipboard to work.
-" Will only work on Linux. Not yet willing to install
-" python / pip and install neovim bundle and xerox
-" bundle to get this simple functionality to work.
-" See https://github.com/neovim/neovim/issues/583
-" function! ClipboardYank()
-"   call system('xclip -i -selection clipboard', @@)
-" endfunction
-" function! ClipboardPaste()
-"   let @@ = system('xclip -o -selection clipboard')
-" endfunction
-"
-" vnoremap <silent> y y:call ClipboardYank()<cr>
-" vnoremap <silent> d d:call ClipboardYank()<cr>
-" nnoremap <silent> p :call ClipboardPaste()<cr>p
-" onoremap <silent> y y:call ClipboardYank()<cr>
-" onoremap <silent> d d:call ClipboardYank()<cr>
+" See :help nvim_clipboard. Works great on arch.
+if has('nvim')
+  set unnamedclip
+endif
 
 " Setup persistent undo/redo. Quite nice.
 silent !mkdir ~/.vim/backups > /dev/null 2>&1
@@ -101,6 +87,9 @@ Plug 'derekwyatt/vim-fswitch'
 "Plug 'airblade/vim-gitgutter'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/neco-ghc'
+" I don't use ultisnips all that often and it was causing a (large) slowdown
+" on vim startup. May want to lazily load this.
+"Plug 'SirVer/ultisnips'
 call plug#end()
 
 "--------------
