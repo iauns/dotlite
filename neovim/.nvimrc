@@ -3,7 +3,7 @@
 " GENERAL SETTINGS
 syntax enable
 syntax sync minlines=256        " Speed up vim's syntax highlighting
-let mapleader="s"               " 
+let mapleader="s"               "
 set tabstop=2                   " Number of spaces represented by an actual <Tab> char
 set softtabstop=2               " Number of spaces that a <Tab> is converted into
 set shiftwidth=2                " Number of spaces for autoindent
@@ -14,10 +14,10 @@ set virtualedit=onemore         " Add one extra 'virtual' space at end of each l
 "set showcmd                     " Show partial commands in last line of screen
 "set rnu                         " Relative line numbers.
 "set nu                          " Show absolute line number on current line when rnu set
-"set nostartofline               " 
-"set timeout                     " Lower delay of escapting out of other modes (3 lines)
-"set timeoutlen=5000             " 
-"set ttimeoutlen=0               "
+"set nostartofline               "
+set timeout                     " Lower delay of escapting out of other modes (3 lines)
+set timeoutlen=5000             "
+set ttimeoutlen=0               "
 "set linebreak                   " Wraps at 'breakat' instead of middle
 "set so=0                        " Lines of context at bottom / top of document
 "set noshowmatch                 " Don't show matching brackets (%)
@@ -44,6 +44,10 @@ set confirm                     " Confirm dialog for save instead of fail
 set visualbell                  " Visual bell instead of beep
 set t_vb=                       " Disable visual bell (reset terminal code)
 
+set so=0                        " Lines of context at the bottom / top of document.
+set list
+set listchars=tab:▸\ ,trail:+,extends:❯,precedes:❮
+
 if has('nvim')
   " See: https://github.com/neovim/neovim/issues/1179
   " Try: pip instal git+https://github.com/neovim/python-client.git
@@ -56,8 +60,8 @@ if has('nvim')
 endif
 
 " Setup persistent undo/redo. Quite nice.
-silent !mkdir ~/.vim/backups > /dev/null 2>&1
-set undodir=~/.vim/backups
+silent !mkdir ~/.nvim/backups > /dev/null 2>&1
+set undodir=~/.nvim/backups
 set undofile
 set undolevels=1250
 
