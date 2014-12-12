@@ -7,3 +7,12 @@ alias gs='git status'
 setopt IGNORE_EOF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH=~/bin:~/.cabal/bin/:$PATH
+
+source ~/.zsh/antigen/antigen.zsh
+
+# Syntax highlighting bundle
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle Tarrasch/zsh-bd
+
+antigen apply
+
