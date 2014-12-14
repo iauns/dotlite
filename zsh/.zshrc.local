@@ -4,10 +4,15 @@ alias nv='nvim'
 alias n='nvim'
 alias g='git'
 alias gs='git status'
+alias h='cheat'
 setopt IGNORE_EOF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-alias j=autojump
 export PATH=~/bin:~/.cabal/bin/:$PATH
+
+# THIS IS WRONG:
+# Autojump never jumps to the directory. j is a command we should source
+# from autojump. Will need to install manually instead of from pacman.
+alias j=autojump
 
 source ~/.zsh/antigen/antigen.zsh
 
