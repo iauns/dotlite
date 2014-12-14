@@ -6,6 +6,7 @@ alias g='git'
 alias gs='git status'
 setopt IGNORE_EOF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias j=autojump
 export PATH=~/bin:~/.cabal/bin/:$PATH
 
 source ~/.zsh/antigen/antigen.zsh

@@ -11,6 +11,20 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
+# Disable touch pad if syndaemon is available.
+#if type syndaemon 2>/dev/null; then
+#  # -i 2 == Sets idle time (time after each keypress to re-enable taps).
+#  # -k   == Ignore modifier keys when monitoring keyboard activity
+#  # -t   == Do not disable mouse movement when typing. Only disable tapping.
+#  syndaemon -t -k -i 2 &
+#fi
+
+if type synclient 2>/dev/null; then
+  # Attempt to detect palm placement. I did have this in xorg.init.d/
+  # 50-synaptics.  but X failed to parse it after a system upgrade.
+  synclient PalmDetect=1
+fi
+
 # exec gnome-session
 # exec startkde
 # exec startxfce4
