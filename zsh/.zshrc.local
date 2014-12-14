@@ -7,12 +7,13 @@ alias gs='git status'
 alias h='cheat'
 setopt IGNORE_EOF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH=~/scripts/bin:~/scripts/pbin:~/.cabal/bin/:$PATH
+export PATH=~/scripts/bin:~/scripts/usr/bin:~/.cabal/bin/:$PATH
 
-# THIS IS WRONG:
-# Autojump never jumps to the directory. j is a command we should source
-# from autojump. Will need to install manually instead of from pacman.
-alias j=autojump
+unalias j
+[[ -s /etc/profile.d/autojump.zsh ]] && source /etc/profile.d/autojump.zsh
+
+# ZSH Completion system init (we can do this with our cheat command...)
+autoload -U compinit && compinit -u
 
 source ~/.zsh/antigen/antigen.zsh
 
