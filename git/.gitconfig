@@ -5,3 +5,5 @@
 	s = status
 [push]
 	default = simple
+[core]
+	editor = nvim
