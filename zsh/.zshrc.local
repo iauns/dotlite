@@ -36,3 +36,13 @@ antigen bundle Tarrasch/zsh-bd
 
 antigen apply
 
+if type gpg-agent 2>/dev/null; then
+  gnupginf="$HOME/.gnupg/gpg-agent.info"
+  if pgrep -x -u "${USER}" gpg-agent > /dev/null 2>&1; then
+    eval `cat $gnupginf`
+    eval `cut -d= -f1 $gnupginf | xargs echo export`
+  else
+    eval `gpg-agent -s --daemon --enable-ssh-support --write-env-file "$gnupginf"`
+  fi
+fi
+
