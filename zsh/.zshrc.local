@@ -36,7 +36,7 @@ antigen bundle Tarrasch/zsh-bd
 
 antigen apply
 
-if type gpg-agent 2>/dev/null; then
+if type gpg-agent >/dev/null 2>&1; then
   gnupginf="$HOME/.gnupg/gpg-agent.info"
   if pgrep -x -u "${USER}" gpg-agent > /dev/null 2>&1; then
     eval `cat $gnupginf`
