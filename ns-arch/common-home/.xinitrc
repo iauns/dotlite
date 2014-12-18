@@ -41,6 +41,19 @@ if [ -s ~/.Xmodmap ]; then
   xmodmap ~/.Xmodmap
 fi
 
+# Start the GPG agent if it hasn't been started already.
+echo "HI2"
+if type gpg-agent >/dev/null 2>&1; then
+  gnupginf="$HOME/.gnupg/gpg-agent.info"
+  echo " HI "
+  if pgrep -x -u "${USER}" gpg-agent > /dev/null 2>&1; then
+    eval `cat $gnupginf`
+    eval `cut -d= -f1 $gnupginf | xargs echo export`
+  else
+    eval `gpg-agent -s --daemon --enable-ssh-support --write-env-file "$gnupginf"`
+  fi
+fi
+
 # Ctrl-t and up / down / right / left equivalents are set up in
 # the window manager.
 exec i3
