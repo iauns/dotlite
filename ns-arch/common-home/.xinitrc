@@ -41,12 +41,17 @@ if [ -s ~/.Xmodmap ]; then
   xmodmap ~/.Xmodmap
 fi
 
+if [ -s ~/.xbindkeys ]; then
+  xbindkeys
+fi
+
 # Start the GPG agent if it hasn't been started already.
 echo "HI2"
 if type gpg-agent >/dev/null 2>&1; then
   gnupginf="$HOME/.gnupg/gpg-agent.info"
   echo " HI "
   if pgrep -x -u "${USER}" gpg-agent > /dev/null 2>&1; then
+    # I don't think we need this section. gnupginf no longer gets written out.
     eval `cat $gnupginf`
     eval `cut -d= -f1 $gnupginf | xargs echo export`
   else
