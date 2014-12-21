@@ -65,6 +65,10 @@
 "playerctl previous"
   XF86AudioPrev
 
+#"xdotool key --clearmodifiers BackSpace"
+# "xdotool key --clearmodifiers Right"
+#   control + e
+
 #"xterm -geom 50x20+20+20"
 #   Shift+Mod2+alt + s
 #
