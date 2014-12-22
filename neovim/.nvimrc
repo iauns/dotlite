@@ -169,6 +169,10 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" TODO: Think about using c-q for expand snippet, or make expand snippet
+" only work in insert mode.
+nnoremap <C-e> :wa<CR>
+
 " ---------------- Key remapping ------------------
 
 " U: Redos since 'u' undos
