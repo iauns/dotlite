@@ -8,7 +8,7 @@ alias h='cheat'
 alias t='task'
 setopt IGNORE_EOF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH=~/scripts/bin:~/scripts/usr/bin:~/.cabal/bin/:$PATH
+export PATH=~/scripts/bin:~/scripts/usr/bin:~/.cabal/bin:$PATH
 export EDITOR=nvim
 
 # Vim input mode: dougblack.io/words/zsh-vi-mode.html
