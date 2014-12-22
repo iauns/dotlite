@@ -91,6 +91,9 @@ Plug 'derekwyatt/vim-fswitch'
 "Plug 'airblade/vim-gitgutter'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/neco-ghc'
+" TODO: Figure out all text objection
+Plug 'michaeljsmith/vim-indent-object'
+"Plug 'tmhedberg/indent-motion'
 " I don't use ultisnips all that often and it was causing a (large) slowdown
 " on vim startup. May want to lazily load this.
 "Plug 'SirVer/ultisnips'
