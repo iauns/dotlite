@@ -1,9 +1,10 @@
 [user]
-	email = james@iauns.com
-	name = James Hughes
+  email = james@iauns.com
+  name = James Hughes
 [alias]
-	s = status
+  s = status
+  co = checkout
 [push]
-	default = simple
+  default = simple
 [core]
-	editor = nvim
+  editor = nvim
