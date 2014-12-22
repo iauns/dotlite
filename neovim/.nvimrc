@@ -56,7 +56,7 @@ endif
 
 " See :help nvim_clipboard. Works great on arch.
 if has('nvim')
-  set unnamedclip
+  set clipboard=unnamed
 endif
 
 " Setup persistent undo/redo. Quite nice.
