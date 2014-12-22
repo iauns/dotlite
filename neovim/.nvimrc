@@ -94,6 +94,7 @@ Plug 'eagletmt/neco-ghc'
 " TODO: Figure out all text objection
 Plug 'michaeljsmith/vim-indent-object'
 "Plug 'tmhedberg/indent-motion'
+Plug 'Raimondi/delimitMate'
 " I don't use ultisnips all that often and it was causing a (large) slowdown
 " on vim startup. May want to lazily load this.
 "Plug 'SirVer/ultisnips'
@@ -243,6 +244,17 @@ noremap <leader>sh z=
 "---------
 " PLUGINS
 "---------
+
+" ---------------- Delimit Mate ------------------
+" Look into auto-pairs
+"silent! imap <CR> <C-g>u<Plug>delimitMateCR
+
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+let g:delimitMate_balance_matchpairs = 1
+
+" Disable delimit mate in unite buffers.
+au FileType unite let b:delimitMate_autoclose = 0
 
 " ---------------- Slime ------------------
 let g:slime_target = "tmux"
