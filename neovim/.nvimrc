@@ -54,10 +54,12 @@ if has('nvim')
   runtime! python_setup.vim
 endif
 
-" See :help nvim_clipboard. Works great on arch.
-if has('nvim')
-  set clipboard=unnamed
-endif
+set clipboard=unnamed
+"   if has ('unnamedplus')
+"     set clipboard=unnamedplus
+"   else
+"     set clipboard=unnamed
+"   endif
 
 " Setup persistent undo/redo. Quite nice.
 silent !mkdir ~/.nvim/backups > /dev/null 2>&1
@@ -100,6 +102,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 " I don't use ultisnips all that often and it was causing a (large) slowdown
 " on vim startup. May want to lazily load this.
 "Plug 'SirVer/ultisnips'
+
 call plug#end()
 
 function! s:buflist()
@@ -112,6 +115,10 @@ endfunction
 function! s:bufopen(e)
   execute 'buffer' matchstr(a:e, '^[ 0-9]*')
 endfunction
+
+if !has('nvim')
+  nnoremap <silent> <C-p> :FZF<CR>
+endif
 
 nnoremap <silent> <Leader><Enter> :call fzf#run({
 \ 'source': reverse(<sid>buflist()),
@@ -386,7 +393,9 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap [unite] <Nop>
 nmap <leader>u [unite]
 
-nnoremap <silent> <C-p> :<C-u>Unite -no-split -wipe -sync -buffer-name=files file_rec/async file/new<CR>
+if has('nvim')
+  nnoremap <silent> <C-p> :<C-u>Unite -no-split -wipe -sync -buffer-name=files file_rec/async file/new<CR>
+endif
 
 " Quickly search from buffer directory.
 nnoremap <silent> [unite]d  :<C-u>UniteWithBufferDir
