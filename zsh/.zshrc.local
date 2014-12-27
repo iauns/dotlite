@@ -2,6 +2,7 @@
 # Local zshrc -- using system as per grml's advice.
 alias nv='nvim'
 alias n='nvim'
+alias v='vim'
 alias g='git'
 alias gs='git status'
 alias h='cheat'

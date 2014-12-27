@@ -95,10 +95,30 @@ Plug 'eagletmt/neco-ghc'
 Plug 'michaeljsmith/vim-indent-object'
 "Plug 'tmhedberg/indent-motion'
 Plug 'Raimondi/delimitMate'
+" FZF doesn't work properly (switching between curses based programs)
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 " I don't use ultisnips all that often and it was causing a (large) slowdown
 " on vim startup. May want to lazily load this.
 "Plug 'SirVer/ultisnips'
 call plug#end()
+
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+nnoremap <silent> <Leader><Enter> :call fzf#run({
+\ 'source': reverse(<sid>buflist()),
+\ 'sink': function('<sid>bufopen'),
+\ 'options': '+m',
+\ 'tmux_height': '40%'
+\ })<CR>
 
 "--------------
 " Color scheme
@@ -358,7 +378,9 @@ let g:unite_source_file_rec_max_cache_files = 0
 call unite#custom#source('file_mru,file_rec,file_rec/async,grepocate', 'max_candidates', 0)
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_selecta'])
+" Selecta sorter has issues in neovim.
+"call unite#filters#sorter_default#use(['sorter_selecta'])
+"call unite#filters#sorter_default#use(['sorter_default'])
 
 " Map '-' to the prefix for Unite.
 nnoremap [unite] <Nop>
