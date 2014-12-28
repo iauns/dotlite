@@ -12,6 +12,7 @@ setopt IGNORE_EOF
 export PATH=~/scripts/bin:~/scripts/usr/bin:~/.cabal/bin:$PATH
 export EDITOR=nvim
 export CPM_CACHE_DIR=$HOME/.cpm_cache
+export FZF_DEFAULT_OPTS=--reverse
 
 # Vim input mode: dougblack.io/words/zsh-vi-mode.html
 bindkey -v
