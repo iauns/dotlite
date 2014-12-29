@@ -99,6 +99,8 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'Raimondi/delimitMate'
 " FZF doesn't work properly (switching between curses based programs)
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+" Youcompleteme
+"Plug 'Valloric/YouCompleteMe'
 " I don't use ultisnips all that often and it was causing a (large) slowdown
 " on vim startup. May want to lazily load this.
 "Plug 'SirVer/ultisnips'
