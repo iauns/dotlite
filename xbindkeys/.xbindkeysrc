@@ -1,7 +1,9 @@
 ###########################
 # xbindkeys configuration #
 ###########################
-#
+
+# See keys with: xbindkeys -k
+
 # Version: 1.8.6
 #
 # If you edit this file, do not forget to uncomment any lines
@@ -65,7 +67,13 @@
 "playerctl previous"
   XF86AudioPrev
 
-#"xdotool key --clearmodifiers BackSpace"
+# "xdotool key --clearmodifiers Shift+Page_Up"
+#   Mode_switch + u
+#
+# "xdotool key --clearmodifiers Shift+Page_Down"
+#   Mode_switch + d
+
+#"xdotool key --clearmodifiers BackSpace"EOU
 # "xdotool key --clearmodifiers Right"
 #   control + e
 
