@@ -11,6 +11,13 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
+# Merge X resources. This is what determines urxvt's color scheme.
+if [ -f ~/.Xresources ]; then
+  if type xrdb 2>/dev/null; then
+    xrdb -merge ~/.Xresources
+  fi
+fi
+
 # Disable touch pad if syndaemon is available.
 #if type syndaemon 2>/dev/null; then
 #  # -i 2 == Sets idle time (time after each keypress to re-enable taps).
