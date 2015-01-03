@@ -308,8 +308,8 @@ nmap <leader>ib :exe ':SlimeSend1 b '.expand("%:p:t").":".line('.')<CR>
 
 " Vim wiki toggle list item.
 nmap <silent> <leader>t <Plug>VimwikiToggleListItem
-nnoremap <silent> <leader>wo :VimwikiGoto 
-nnoremap <silent> <leader>we :VimwikiSearch 
+nnoremap <silent> <leader>wo :VimwikiGoto
+nnoremap <silent> <leader>we :VimwikiSearch
 nmap <silent> <leader>wx <Plug>VimwikiToggleListItem
 
 " ---------------- Vim-easy-align keys ------------------
@@ -490,5 +490,8 @@ runtime macros/matchit.vim
 " Comments will only be continued when in insert mode.
 autocmd FileType * setlocal formatoptions-=o
 
-" set fillchars+=vert:\│
-" hi clear VertSplit
+" ---------------- Vertical Split ------------------
+" This changes the vertical split style and color so that we don't get a
+" nasty white vertical bar.
+set fillchars+=vert:\│
+hi clear VertSplit
