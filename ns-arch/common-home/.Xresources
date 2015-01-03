@@ -1,4 +1,5 @@
-URxvt*background: black
+!URxvt*background: black
+URxvt*background: #222222
 URxvt*foreground: white
 
 ! ! Other colors
@@ -20,7 +21,7 @@ URxvt*foreground: white
 ! URxvt*color15: white
 
 URxvt*color0:  #2E3436
-URxvt*color1:  #a40000
+URxvt*color1:  #F46060
 URxvt*color2:  #4E9A06
 URxvt*color3:  #C4A000
 URxvt*color4:  #3465A4
@@ -35,3 +36,20 @@ URxvt*color12: #729FCF
 URxvt*color13: #AD7FA8
 URxvt*color14: #fcaf3e
 URxvt*color15: #EEEEEC
+!URxvt.font: 9x15
+URxvt.font: xft:DejaVu Sans Mono:pixelsize=13:antialias=true:hinting=true
+URxvt.scrollBar: false
+!URxvt.font: 9x15bold
+!URxvt.font: xft:monaco:size=10
+URxvt.saveLines: 8192
+
+! Im not going to figure out the keysyms right now. When I need to, I can
+! paste using the mouse and keyboard.
+! ! The following lines came from the notes afer installing urxvt-perls
+! URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
+! URxvt.url-select.launcher: firefox
+! URxvt.url-select.underline: true
+! URxvt.keysym.Control-u: perl:url-select:select_next
+! URxvt.keysym.Control-Space: perl:keyboard-select:activate
+! URxvt.keysym.Control-s: perl:keyboard-select-search
+
