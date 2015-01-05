@@ -25,7 +25,6 @@ fi
 #  # -t   == Do not disable mouse movement when typing. Only disable tapping.
 #  syndaemon -t -k -i 2 &
 #fi
-
 if type synclient 2>/dev/null; then
   # Attempt to detect palm placement. I did have this in xorg.init.d/
   # 50-synaptics.  but X failed to parse it after a system upgrade.
@@ -45,7 +44,11 @@ fi
 setxkbmap dvorak -option 'caps:swapescape,ctrl:swap_rwin_rctl'
 
 if [ -s ~/.Xmodmap ]; then
-  xmodmap ~/.Xmodmap
+  if type xmodmap 2>/dev/null; then
+    xmodmap ~/.Xmodmap
+  else
+    echo "xinitrc: Unable to find xmodmap!"
+  fi
 fi
 
 if [ -s ~/.xbindkeys ]; then
@@ -68,5 +71,5 @@ fi
 
 # Ctrl-t and up / down / right / left equivalents are set up in
 # the window manager.
-exec i3
-#exec xterm
+#exec i3
+exec xterm
