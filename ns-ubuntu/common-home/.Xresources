@@ -1,0 +1,55 @@
+!URxvt*background: black
+URxvt*background: #222222
+URxvt*foreground: white
+
+! ! Other colors
+! URxvt*color0: black
+! URxvt*color1: red3
+! URxvt*color2: green3
+! URxvt*color3: yellow3
+! URxvt*color4: blue2
+! URxvt*color5: magenta3
+! URxvt*color6: cyan3
+! URxvt*color7: gray90
+! URxvt*color8: grey50
+! URxvt*color9: red
+! URxvt*color10: green
+! URxvt*color11: yellow
+! URxvt*color12: blue
+! URxvt*color13: magenta
+! URxvt*color14: cyan
+! URxvt*color15: white
+
+URxvt*color0:  #2E3436
+URxvt*color1:  #F46060
+URxvt*color2:  #4E9A06
+URxvt*color3:  #C4A000
+URxvt*color4:  #3465A4
+URxvt*color5:  #75507B
+URxvt*color6:  #ce5c00
+URxvt*color7:  #babdb9
+URxvt*color8:  #555753
+URxvt*color9:  #EF2929
+URxvt*color10: #8AE234
+URxvt*color11: #FCE94F
+URxvt*color12: #729FCF
+URxvt*color13: #AD7FA8
+URxvt*color14: #fcaf3e
+URxvt*color15: #EEEEEC
+!URxvt.font: 9x15
+URxvt.font: xft:DejaVu Sans Mono:pixelsize=13:antialias=true:hinting=true
+URxvt.scrollBar: false
+!URxvt.font: 9x15bold
+!URxvt.font: xft:monaco:size=10
+URxvt.saveLines: 8192
+
+! Im not going to figure out the keysyms right now. When I need to, I can
+! paste using the mouse and keyboard.
+! ! The following lines came from the notes afer installing urxvt-perls
+! URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
+! URxvt.url-select.launcher: firefox
+! URxvt.url-select.underline: true
+! URxvt.keysym.Control-u: perl:url-select:select_next
+! URxvt.keysym.Control-Space: perl:keyboard-select:activate
+! URxvt.keysym.Control-s: perl:keyboard-select-search
+

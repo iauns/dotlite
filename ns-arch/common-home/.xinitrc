@@ -56,7 +56,6 @@ if [ -s ~/.xbindkeys ]; then
 fi
 
 # Start the GPG agent if it hasn't been started already.
-echo "HI2"
 if type gpg-agent >/dev/null 2>&1; then
   gnupginf="$HOME/.gnupg/gpg-agent.info"
   echo " HI "
