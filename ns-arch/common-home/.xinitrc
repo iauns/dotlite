@@ -15,6 +15,8 @@ fi
 if [ -f ~/.Xresources ]; then
   if type xrdb 2>/dev/null; then
     xrdb -merge ~/.Xresources
+  else
+    echo "xinitrc: Unable to find xrdb (pacman xorg-xrdb package)"
   fi
 fi
 
@@ -47,18 +49,21 @@ if [ -s ~/.Xmodmap ]; then
   if type xmodmap 2>/dev/null; then
     xmodmap ~/.Xmodmap
   else
-    echo "xinitrc: Unable to find xmodmap!"
+    echo "xinitrc: Unable to find xmodmap (pacman xorg-xmodmap package)"
   fi
 fi
 
 if [ -s ~/.xbindkeys ]; then
-  xbindkeys
+  if type xbindkeys 2>/dev/null; then
+    xbindkeys
+  else
+    echo "xinitrc: Unable to find xbindkeys (pacman xbindkeys package)"
+  fi
 fi
 
 # Start the GPG agent if it hasn't been started already.
 if type gpg-agent >/dev/null 2>&1; then
   gnupginf="$HOME/.gnupg/gpg-agent.info"
-  echo " HI "
   if pgrep -x -u "${USER}" gpg-agent > /dev/null 2>&1; then
     # I don't think we need this section. gnupginf no longer gets written out.
     eval `cat $gnupginf`
@@ -70,5 +75,5 @@ fi
 
 # Ctrl-t and up / down / right / left equivalents are set up in
 # the window manager.
-#exec i3
-exec xterm
+exec i3
+#exec xterm
