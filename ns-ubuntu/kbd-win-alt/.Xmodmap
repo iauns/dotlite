@@ -1,0 +1,17 @@
+remove Mod5 = Mode_switch
+remove Mod4 = Super_L
+remove Mod1 = Alt_L
+remove Mod1 = Alt_R
+!clear Control
+keysym Alt_L = Mode_switch
+add Mod1 = Super_L
+add Control = Alt_R
+!keysym Super_L = Alt_L
+keycode 45 = t T Return Return
+keycode 27 = p P Up Up
+keycode 41 = u U Down Down
+keycode 25 = comma less Left Left
+keycode 26 = period greater Right Right
+! Clear capslock then re-assign to escape
+clear Lock
+keycode 66 = Escape
