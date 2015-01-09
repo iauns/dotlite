@@ -35,6 +35,12 @@ autoload -U compinit && compinit -u
 
 source ~/.zsh/antigen/antigen.zsh
 
+# zstyle ':prompt:grml:left:setup' items rc change-root user token path percent
+zstyle ':prompt:grml:left:setup' items rc change-root token time path percent
+zstyle ':prompt:grml:right:setup' items time
+zstyle ':prompt:grml:*:items:user' token '%n '
+zstyle ':prompt:grml:*:items:time' token '%T '
+
 # Syntax highlighting bundle
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle Tarrasch/zsh-bd
