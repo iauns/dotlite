@@ -3,3 +3,4 @@
 :set tabnumbers
 :nnoremap <C-h> gT
 :nnoremap <C-l> gt
+:set gui=nonavigation
