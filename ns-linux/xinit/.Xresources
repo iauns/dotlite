@@ -37,7 +37,7 @@ URxvt*color13: #AD7FA8
 URxvt*color14: #fcaf3e
 URxvt*color15: #EEEEEC
 !URxvt.font: 9x15
-URxvt.font: xft:DejaVu Sans Mono:pixelsize=18:antialias=true:hinting=true
+URxvt.font: xft:DejaVu Sans Mono:pixelsize=20:antialias=true:hinting=true
 URxvt.scrollBar: false
 !URxvt.font: 9x15bold
 !URxvt.font: xft:monaco:size=10
@@ -46,7 +46,18 @@ URxvt.saveLines: 8192
 ! Im not going to figure out the keysyms right now. When I need to, I can
 ! paste using the mouse and keyboard.
 ! ! The following lines came from the notes afer installing urxvt-perls
-! URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
+! The code for the following extensions are found in ~/.urxvt/ext
+URxvt*perl-ext-common: clipboard,keyboard-select
+URxvt*keysym.M-s: perl:keyboard-select:search
+URxvt*keysym.M-v: perl:clipboard:paste
+URxvt*keysym.M-c: perl:clipboard:copy
+! Set clipboard command. The default command is xsel -ob, which does not
+! generally work for our use case.
+URxvt*clipboard.copycmd:  xsel -i
+URxvt*clipboard.pastecmd: xsel -o
+URxvt*keysym.M-Escape: perl:keyboard-select:activate
+URxvt*keysym.M-space: perl:keyboard-select:activate
+!URxvt*keysym.C-p: command:\033[3;5;5t
 ! URxvt.url-select.launcher: firefox
 ! URxvt.url-select.underline: true
 ! URxvt.keysym.Control-u: perl:url-select:select_next
