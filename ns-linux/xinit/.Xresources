@@ -47,7 +47,7 @@ URxvt.saveLines: 8192
 ! paste using the mouse and keyboard.
 ! ! The following lines came from the notes afer installing urxvt-perls
 ! The code for the following extensions are found in ~/.urxvt/ext
-URxvt*perl-ext-common: clipboard,keyboard-select
+URxvt*perl-ext-common: clipboard,keyboard-select,url-select
 URxvt*keysym.M-s: perl:keyboard-select:search
 URxvt*keysym.M-v: perl:clipboard:paste
 URxvt*keysym.M-c: perl:clipboard:copy
@@ -57,8 +57,8 @@ URxvt*clipboard.copycmd:  xsel -i
 URxvt*clipboard.pastecmd: xsel -o
 URxvt*keysym.M-Escape: perl:keyboard-select:activate
 URxvt*keysym.M-space: perl:keyboard-select:activate
-!URxvt*keysym.C-p: command:\033[3;5;5t
-! URxvt.url-select.launcher: firefox
+URxvt*keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: firefox -new-window
 ! URxvt.url-select.underline: true
 ! URxvt.keysym.Control-u: perl:url-select:select_next
 ! URxvt.keysym.Control-Space: perl:keyboard-select:activate
