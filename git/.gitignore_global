@@ -1,0 +1,37 @@
+# Cscope files
+cscope.files
+cscope.in.out
+cscope.out
+cscope.po.out
+.clang_complete
+.ycm_extra_conf.py
+.ycm_extra_conf.pyc
+
+# Tag files
+tags
+
+# Eclipse Project Files
+.cproject
+.project
+.settings/*
+
+# Mac OS X specific files.
+.DS_Store
+
+# Vim swap files
+*.swp
+
+# LLDB files
+.lldbinit
+
+# Javascript tern related temporary files.
+.tern-port
+
+# Xcode
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
